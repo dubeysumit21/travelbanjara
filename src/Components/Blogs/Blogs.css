@@ -1,0 +1,43 @@
+.mainDiv{
+    position: absolute;
+    top: 180px;
+    width: 96%;
+    left: 2%;;
+}
+.blogsHeading{
+    box-shadow: 2px 2px 5px black;
+    margin: auto;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    background-image:  linear-gradient( to right,#49274a,#d292d4);
+    text-align: center;
+}
+.main{
+    width: 100%;
+}
+.bodyImage{
+    width: 100vw;
+    height: 380px;
+    position: absolute;
+    z-index: 10;
+    opacity: 0.7;
+    left: -2%;
+}
+.bodyText{
+    position: absolute;
+    font-size: 45px;
+    color: black;
+    left: 1%;
+    z-index: 15;
+    display: block;
+    margin-top: 5px;
+}
+.by{
+    position: absolute;
+    z-index: 15;
+    margin-top: 70px;
+    color: black;
+    left: 19.5%;
+}

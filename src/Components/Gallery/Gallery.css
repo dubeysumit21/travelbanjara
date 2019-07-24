@@ -1,0 +1,81 @@
+.mainDiv{
+    position: absolute;
+    top: 180px;
+    width: 100%;
+}
+
+.galleryHeading{
+    box-shadow: 2px 2px 5px black;
+    margin: auto;
+    width: 90%;
+    font-size: 20px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    background-image:  linear-gradient( to right,#49274a,#d292d4);
+    text-align: center;
+}
+
+.galleryMain{
+    
+    padding: 8px;   
+    border: 1px solid #49274a;
+    box-shadow: 3px 3px 3px #49274a;
+    border-radius: 3px;
+    margin: auto;
+    display: flex;
+    width: 95%;
+    background-color: #d292d4;
+}
+    
+.imageThumb {
+    margin: 8px;
+    width: 25%;
+    height: 95%;
+}
+.paragraph {
+    text-align: justify;
+    color:  #49274a;
+    width: 55%;
+    margin: 25px;
+}
+
+.galleryButton{
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    width: 15%;
+    height: 30px;
+    cursor: pointer;
+    color: #d292d4;
+    background-color: #49274a;
+    border: none;
+}
+.galleryButton:hover{
+    transform: scale(1.06);
+}
+
+@media (max-width: 760px){
+    .mainDiv{
+        top: 130px;
+    }
+    .galleryMain{
+        flex-flow: column;
+        width: 80%;
+    }
+    .imageThumb{
+        margin: 1px;
+        width: 100%;
+    }
+    .paragraph{
+        text-align: justify;
+        width: 100%;
+        margin: 1px;
+        font-size: 12px;
+    }
+    .galleryButton{
+        width: 90%;
+        margin-top: 10px;
+    }
+}
+

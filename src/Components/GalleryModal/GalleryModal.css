@@ -1,0 +1,49 @@
+.galleryModal{
+    position: fixed;
+    z-index: 5;
+    bottom: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background-color: #d292d4;
+    margin: auto;
+    border: 2px solid yellow;
+}
+
+.galleryComponents{
+    display: flex;
+    width: 100%;
+}
+
+.imageHolder{
+    margin: auto;
+    width: 65%; 
+    height: 400px;
+    padding-top: 5px;  
+}
+
+.images{
+    width: 100%;
+    height: 100%;
+}
+
+.navigationButton{
+    cursor: pointer;
+    margin: auto auto;
+    top: 100px;
+    width: 50px;
+    height: 50px;
+}
+
+@media (max-width: 760px){
+    .galleryModal{
+        left: 5%;
+        width: 90%;
+        height: 60%;
+    }
+    .imageHolder{
+        height: 200px;
+        width: 100%;
+    }
+}
+

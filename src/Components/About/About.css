@@ -1,0 +1,88 @@
+.mainDiv{
+    position: absolute;
+    top: 180px;
+    width: 93%;
+    left: 3%;
+}
+
+.blogHeading{
+    box-shadow: 2px 2px 5px black;
+    margin: auto;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    background-image:  linear-gradient( to right,#49274a,#d292d4);
+    text-align: center;
+}
+
+.footerHeight{
+    position: relative;
+    top: 1810px;
+}
+.campingIntro{
+    margin: auto;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    width: 100%;
+
+}
+.campingIntro:hover{
+    background-color: #eda1f0;
+}
+
+.campingImage{
+    width: 20%;
+    height: 250px;
+}
+
+.campingDescr{
+    text-align: justify;
+    margin-left: 20px;
+    width: 80%;
+    height: 250px;
+    color: black;
+}
+
+@media(max-width: 760px){
+    .mainDiv{
+        top: 130px;
+    }
+    .campingIntro{
+        width: 90%;
+    }
+    .campingImage{
+        height: 100px;
+    }
+    .campingIntro{
+        font-size: 12px;
+    }
+    .campingBack{
+        background-color: #eda1f0;
+    }
+    .footerHeight{
+        position: relative;
+        top: 1790px;
+    }
+}
+
+@media(max-width: 400px){
+    .campingImage{
+        height: 80px;
+        width: 25%;
+    }
+    .campingDescr{
+        height:300px;
+    }
+    .campingIntro{
+        height: 330px;
+    }
+    .campingBack{
+        background-color: #eda1f0;
+    }
+    .footerHeight{
+        position: relative;
+        top: 2180px;
+    }
+}

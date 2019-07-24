@@ -1,0 +1,7 @@
+<ul>
+                                    <li><NavLink to={this.props.match.url + '/blogs'}>Blogs</NavLink></li>
+                                    <li><NavLink to={this.props.match.url + '/gallery'}>Gallery</NavLink></li>
+                                    <li><NavLink to={this.props.match.url + '/available'}>Availability</NavLink></li>
+                                    <li><NavLink to={this.props.match.url + '/register'}>Register</NavLink></li>
+                                    <li><NavLink to={this.props.match.url + '/contactus'}>Contacts</NavLink></li>
+                                </ul>
