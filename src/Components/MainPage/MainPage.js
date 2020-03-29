@@ -13,7 +13,9 @@ import login from '../../assets/images/man-user.png';
 class MainPage extends Component{
 
     componentDidMount () {
-        this.props.history.push(this.props.match.url + '/aboutus');
+        const { match, location, history } = this.props;
+        const { state } = location;
+        history.push(`${match.url}/${state.link}`);
     }
      render(){
         return(
@@ -30,7 +32,7 @@ class MainPage extends Component{
                                 <li><NavLink to={this.props.match.url + '/register'}>Register</NavLink></li>
                                 <li><NavLink to={this.props.match.url + '/blogs'}>Blogs</NavLink></li>
                                 <li><NavLink to={this.props.match.url + '/contactus'}>Contacts</NavLink></li>
-                                <li><NavLink to={this.props.match.url + '/login'}><span><img style={{width: '11px', marginRight: '5px'}} src={login} alt="unloaded" /></span>Login</NavLink></li>
+                                <li><NavLink to={'/'}><span><img style={{width: '11px', marginRight: '5px'}} src={login} alt="unloaded" /></span>Login</NavLink></li>
                             </ul>
                     </header>
                     <main>
