@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginImage from '../../assets/images/login.png';
 import LogoImage from '../../assets/images/travelBanjara.png';
 import classes from './HomePageBackground.css';
+import Header from '../Header/index';
 
 const LoginItems = (props: Props) => {
     const { item } = props;
@@ -273,18 +274,9 @@ class HomePageBackground extends Component {
         }
     }
 
-    navigationHandler = item => {
-        console.info(item);
-        const { history } = this.props;
-        history.push({
-            pathname: '/Mainpage',
-            state: { link: item.page },
-        });
-    }
-
     render() {
         const { displayType } = this.state;
-        const navItem = this.navItems.map(x => <button onClick={() => this.navigationHandler(x)} className={classes.navItems}>{x.name}</button>);
+        const { history } = this.props;
         const displayItem = this.getDisplayItem(displayType);
         return (
             <div style={{ height: window.innerHeight }}>
@@ -292,51 +284,11 @@ class HomePageBackground extends Component {
                     <img className={classes.Background} src="https://makeholidaysgreener.com/images/media/iStock-139992597_reethi_beach_crop.jpg" alt="image.jpg" />
                 </div>
                 <div className={classes.container}>
-                    <div className={classes.logo}>
-                        <div style={{ width: '10%' }}>
-                            <img className={classes.Background} src={LogoImage} alt="image.jpg" style={{ width: '400px', height: '150px'}}/>
-                        </div>
-                        <div className={classes.navBarContainer}>
-                            {navItem}
-                        </div>
-                    </div>
+                    <Header history={history}/>
                     <div className={classes.loginBoxContainer}>
-                        {/* <div className={classes.loginBox}>
-                            <div className={classes.loginWrapper}>
-                                <img className={classes.loginImage} src={LoginImage} />
-                                <p style={{ color: '#FFFFFF' }}>Please enter your details below to continue.</p>
-                            </div>
-                            <div className={classes.loginDetailsWrapper}>
-                                {loginDetails}
-                                <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                                    <button onClick={this.goToMainPageHandler} className={classes.btn} disabled>Sign In</button>
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'center', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                    <p style={{ fontSize: '18px', color: '#FFFFFF' }}>Not Registered?</p>
-                                    <button onClick={this.goToMainPageHandler} className={classes.signUpButton} disabled>Click here to Sign Up</button>
-                                </div>
-                            </div>
-                        </div> */}
-                        {/* <LoginBox goToMainPageHandler={this.goToMainPageHandler} />
-                        <SignUpBox changeStateHandler={this.changeStateHandler} /> */}
                         {displayItem}
                     </div>
                 </div>
-                {/* <br></br>
-                <div className={classes.info}>
-                    <h2 style={{fontFamily: 'Montserrat, sans-serif'}}><i>“Real freedom lies in wildness, not in civilization.”</i></h2>
-                </div>
-                <div className={classes.info}>
-                    <h5><i> - Charles Lindbergh</i></h5>
-                </div>
-                <div className={classes.intro}>
-                    <br></br>
-                    <p>The Travel Banjara is all about giving unique camping experiences. We believe passionately in travel, sustainable tourism and nurturing a sense of adventure in our customers.
-                       Camping is a very new concept in Odisha but it is filled with potential. We wish to give people a taste of camping and all that comes along with it.
-                       Our camping trips are filled with good food, good music, long talks and great friends while enjoying the raw cacophony of nature. The bonfires keep you warm while you stargaze and dream of a distant land. And that's when the realisation hits you. That the moment is now.</p>
-                    <p>So, come be a part of <strong>The Travel Banjara</strong> family and lets create memories that will last a long time.</p>  
-                </div> */}
-                {/* <div style={{display: 'flex', justifyContent: 'center'}}><button onClick={this.goToMainPageHandler} className={classes.btn} disabled>Enter</button></div> */}
             </div>
         )
     }

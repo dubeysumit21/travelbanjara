@@ -1,0 +1,47 @@
+.logo{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Ubuntu', sans-serif;
+    position: absolute;
+    z-index: 2;
+    height: 150px;
+    color: #ffffff;
+    text-align: center;
+    /* left: 20px; */
+    /* top: 5px; */
+}
+
+.Background{
+    overflow: scroll;
+    z-index: 2;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    /* opacity: 0.7; */
+}
+
+.navBarContainer{
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navItems{
+    font-family: 'Quicksand', sans-serif;
+    width: 25%;
+    color: white;
+    font-size: 24px;
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 5px;
+}
+.navItems:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
