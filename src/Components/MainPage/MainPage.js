@@ -18,6 +18,8 @@ class MainPage extends Component {
         { name: 'Gallery', page: 'gallery', path: '/gallery' },
         { name: 'Contact Us', page: 'contactus', path: '/contactus' },
         { name: 'Register', page: 'register', path: '/register' },
+        { name: 'Blogs', page: 'blogs', path: '/blogs' },
+        { name: 'Reviews', page: 'reviews', path: '/reviews' },
     ];
 
     componentDidMount() {

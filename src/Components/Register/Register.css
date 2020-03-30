@@ -1,39 +1,43 @@
 .mainDiv{
     position: absolute;
     top: 180px;
-    width: 70%;
-    left: 15%;
+	width: 100%;
+	/* left: 5%; */
+	background-color: #003366;
+	justify-content: center;
+	align-items: center;
 }
 
 .registerHeading{
-    box-shadow: 2px 2px 5px black;
-    margin: auto;
-    width: 90%;
-    font-size: 20px;
+    /* box-shadow: 2px 2px 5px black; */
+    /* margin: auto; */
+    width: 100%;
+    font-size: 40px;
     border-radius: 8px;
     font-family: 'Montserrat', sans-serif;
-    background-image:  linear-gradient( to right,#49274a,#d292d4);
-    text-align: center;
+    /* background-image:  linear-gradient( to right,#49274a,#d292d4); */
+	text-align: center;
+	color: #FFFFFF;
 }
 
 .formFill{
-    box-shadow: 2px 2px 5px black;
+    /* box-shadow: 2px 2px 5px black; */
     font-family: 'Montserrat', sans-serif;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     margin: auto;
-    width: 90%;
+	width: 50%;
+	margin-top: -80px;
     text-align: center;
-    height: 2750px;
-    color: black;
+    /* height: 2750px; */
 }
 
 .formStyle{
-	max-width: 60%;
+	max-width: 80%;
 	padding: 10px 20px;
-	background: #d58dd8;
+	/* background: #d58dd8; */
 	margin: 10px auto;
 	padding: 20px;
-	background: #d58dd8;
+	background: #FFFFFF;
 	border-radius: 8px;
 	font-family: 'Montserrat', sans-serif;
 }
@@ -62,7 +66,7 @@
 .formStyle .date,
 .formStyle .paymentDetails {
 	font-family: 'Montserrat', sans-serif;
-	background: rgba(255,255,255,.1);
+	background: #d3e5f7;
 	border: none;
 	border-radius: 4px;
 	font-size: 15px;
@@ -74,7 +78,7 @@
 	box-sizing: border-box; 
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box; 
-	background-color: #f2cbf3;
+	background-color: #d3e5f7;
 	color:black;
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
@@ -104,7 +108,7 @@
 	height:35px;
 }
 .formStyle .number {
-	background: #49274a;
+	background: #003366;
 	color: #fff;
 	height: 30px;
 	width: 30px;
@@ -125,11 +129,11 @@
 	padding: 19px 39px 18px 39px;
 	color: #FFF;
 	margin: 0 auto;
-	background: #49274a;
+	background: #003366;
 	font-size: 18px;
 	text-align: center;
 	font-style: normal;
-    width: 100%;
+    width: 40%;
     border: 0px solid black;
 	margin-bottom: 10px;
 }
@@ -147,7 +151,7 @@ label{
 
 .inputBox{
 	font-family: 'Montserrat', sans-serif;
-	background: rgba(255,255,255,.1);
+	/* background: rgba(255,255,255,.1); */
 	border-radius: 4px;
 	font-size: 15px;
 	margin: 0;
@@ -158,11 +162,12 @@ label{
 	box-sizing: border-box; 
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box; 
-	background-color: #f2cbf3;
+	background-color: #d3e5f7;
 	color:black;
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	margin-bottom: 30px;
+	border-width: 0px;
 }
 
 .red{
