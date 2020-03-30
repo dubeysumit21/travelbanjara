@@ -5,42 +5,67 @@ import classes from './HomePageBackground.css';
 import Header from '../Header/index';
 
 const LoginItems = (props: Props) => {
-    const { item } = props;
+    const { item, valueChangeHandler } = props;
     return (
         <div className={classes.loginItemWrapper}>
             <p style={{ marginBottom: '10px', color: '#FFFFFF', fontSize: '18px' }}>{item.title}</p>
-            <input className={classes.inputBox} />
+            <input className={classes.inputBox} onChange={e => valueChangeHandler(e, item.id)} />
         </div>
     )
 };
 
-const LoginBox = (props: Props) => {
-    const loginConfig = [
-        { title: 'Name', id: 1 },
-        { title: 'Password', id: 2 },
-    ];
-    const { changeStateHandler } = props;
-    const loginDetails = loginConfig && loginConfig.map(x => <LoginItems item={x} />)
-    return (<div className={classes.loginBox}>
-        <div className={classes.loginWrapper}>
-            <img className={classes.loginImage} src={LoginImage} />
-            <p style={{ color: '#FFFFFF' }}>Please enter your details below to continue.</p>
-        </div>
-        <div className={classes.loginDetailsWrapper}>
-            {loginDetails}
-            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                <button onClick={() => console.log('++')} className={classes.btn} disabled>Sign In</button>
+class LoginBox extends Component {
+    state = {
+        email: '',
+        password: ''
+    };
+
+    valueChangeHandler = (e, id) => {
+        switch (id) {
+            case 1: {
+                this.setState({ email: e.target.value });
+                break;
+            }
+            case 2: {
+                this.setState({ password: e.target.value });
+                break;
+            }
+            default: break;
+        }
+    }
+
+    submitDataHandler = () => {
+        console.info(this.state);
+    }
+
+    render() {
+        const loginConfig = [
+            { title: 'Email', id: 1 },
+            { title: 'Password', id: 2 },
+        ];
+        const { changeStateHandler } = this.props;
+        const loginDetails = loginConfig && loginConfig.map(x => <LoginItems item={x} valueChangeHandler={(e, id) => this.valueChangeHandler(e, id)} />);
+        return (<div className={classes.loginBox}>
+            <div className={classes.loginWrapper}>
+                <img className={classes.loginImage} src={LoginImage} />
+                <p style={{ color: '#FFFFFF' }}>Please enter your details below to continue.</p>
             </div>
-            <div style={{ display: 'flex', width: '100%', display: 'flex', flexDirection: 'row', marginTop: '40px' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <button onClick={() => changeStateHandler('signup')} className={classes.signUpButton}>New User, Signup here.</button>
+            <div className={classes.loginDetailsWrapper}>
+                {loginDetails}
+                <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                    <button onClick={() => this.submitDataHandler()} className={classes.btn}>Sign In</button>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <button onClick={() => changeStateHandler('forgot')} className={classes.forgotPassword}>Forgot Password?</button>
+                <div style={{ display: 'flex', width: '100%', display: 'flex', flexDirection: 'row', marginTop: '40px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <button onClick={() => changeStateHandler('signup')} className={classes.signUpButton}>New User, Signup here.</button>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <button onClick={() => changeStateHandler('forgot')} className={classes.forgotPassword}>Forgot Password?</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>);
+        </div>);
+    }
 }
 
 const SignUpBox = (props: Props) => {
@@ -253,6 +278,10 @@ class HomePageBackground extends Component {
         }
     }
 
+    submitDataHandler = () => {
+
+    }
+
     getDisplayItem = type => {
         switch (type) {
             case 'login': {
@@ -284,7 +313,7 @@ class HomePageBackground extends Component {
                     <img className={classes.Background} src="https://makeholidaysgreener.com/images/media/iStock-139992597_reethi_beach_crop.jpg" alt="image.jpg" />
                 </div>
                 <div className={classes.container}>
-                    <Header history={history}/>
+                    <Header history={history} />
                     <div className={classes.loginBoxContainer}>
                         {displayItem}
                     </div>
