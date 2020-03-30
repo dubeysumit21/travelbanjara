@@ -68,31 +68,66 @@ class LoginBox extends Component {
     }
 }
 
-const SignUpBox = (props: Props) => {
-    const loginConfig = [
-        { title: 'Full Name:', id: 1 },
-        { title: 'Mobile Number:', id: 2 },
-        { title: 'Email Address:', id: 3 },
-        { title: 'Password: ', id: 4 },
-    ];
-    const { changeStateHandler } = props;
-    const loginDetails = loginConfig && loginConfig.map(x => <LoginItems item={x} />)
-    return (
-        <div className={classes.signupBox}>
-            <div className={classes.signupWrapper}>
-                <p style={{ color: '#FFFFFF' }}>Please enter your details below to Signup.</p>
-            </div>
-            <div className={classes.signupDetailsWrapper}>
-                {loginDetails}
-                <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                    <button onClick={() => changeStateHandler} className={classes.btn} disabled>Sign In</button>
+class SignUpBox extends Component {
+    state = {
+        name: '',
+        phone: '',
+        amail: '',
+        password: '',
+    };
+
+    valueChangeHandler = (e, id) => {
+        switch (id) {
+            case 1: {
+                this.setState({ name: e.target.value });
+                break;
+            }
+            case 2: {
+                this.setState({ phone: e.target.value });
+                break;
+            }
+            case 3: {
+                this.setState({ email: e.target.value });
+                break;
+            }
+            case 4: {
+                this.setState({ pasword: e.target.value });
+                break;
+            }
+            default: break;
+        }
+    }
+
+    submitDataHandler = () => {
+        console.info(this.state);
+    }
+
+    render() {
+        const loginConfig = [
+            { title: 'Full Name:', id: 1 },
+            { title: 'Mobile Number:', id: 2 },
+            { title: 'Email Address:', id: 3 },
+            { title: 'Password: ', id: 4 },
+        ];
+        const { changeStateHandler } = this.props;
+        const loginDetails = loginConfig && loginConfig.map(x => <LoginItems item={x} valueChangeHandler={(e, id) => this.valueChangeHandler(e, id)} />)
+        return (
+            <div className={classes.signupBox}>
+                <div className={classes.signupWrapper}>
+                    <p style={{ color: '#FFFFFF' }}>Please enter your details below to Signup.</p>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <p style={{ fontSize: '18px', color: '#FFFFFF' }}>Already a member?</p>
-                    <button onClick={() => changeStateHandler('login')} className={classes.loginButton}>Click here to Login.</button>
+                <div className={classes.signupDetailsWrapper}>
+                    {loginDetails}
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                        <button onClick={() => this.submitDataHandler()} className={classes.btn}>Sign In</button>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <p style={{ fontSize: '18px', color: '#FFFFFF' }}>Already a member?</p>
+                        <button onClick={() => changeStateHandler('login')} className={classes.loginButton}>Click here to Login.</button>
+                    </div>
                 </div>
-            </div>
-        </div>);
+            </div>);
+    }
 }
 
 class ForgotPassword extends Component {
