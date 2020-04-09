@@ -30,7 +30,7 @@ class MainPage extends Component {
         const navItem = this.navItems.map(x => <NavLink className={classes.navItems} to={this.props.match.url + x.path}>{x.name}</NavLink>);
         return (
             <div classeName={classes.wrapper}>
-                <header style={{ zIndex: 5}}>
+                <header style={{ zIndex: 5 }}>
                     {/* <div className={classes.logo}><h1>The Travel Banjara</h1></div>
                         <hr></hr>
                         <label for="show-menu" className={classes.showMenu}><img style={{width: '30px', float: 'left', marginLeft: '10px'}} src={hamburger} alt="hamburger"/></label>

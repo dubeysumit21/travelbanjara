@@ -144,6 +144,7 @@ input[type=checkbox]:checked ~ .menu{
     height: 150px;
     color: #ffffff;
     text-align: center;
+    background-color: #FFFFFF;
     /* left: 20px; */
     /* top: 5px; */
 }

@@ -1,8 +1,9 @@
 .mainDiv{
     position: absolute;
     top: 180px;
-    width: 70%;
-    left: 15%;
+    width: 100%;
+    /* left: 15%; */
+    background-color: #003366;
 }
 
 .availableHeading{
