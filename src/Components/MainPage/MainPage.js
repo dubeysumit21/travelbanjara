@@ -14,6 +14,7 @@ import LogoImage from '../../assets/images/travelBanjara.png';
 import HomePageBackground from '../HomePageBackground/HomePageBackground';
 import PackageTab from '../PackageTab';
 import { Animated } from "react-animated-css";
+import Slider from 'react-slick';
 
 class MainPage extends Component {
 
@@ -74,7 +75,7 @@ class MainPage extends Component {
             case 'tab-type': {
                 if (loggedIn) {
                     return (
-                        <Animated animationIn="slideInDown" animationOut="slideInDown" animationInDelay={1} isVisible={true} style={{ width: '50%'}}>
+                        <Animated animationIn="slideInDown" animationOut="slideInDown" animationInDelay={1} isVisible={true} style={{ width: '50%' }}>
                             <PackageTab content={content} onClick={() => this.setState({ popupFlag: false })} />
                         </Animated>
                     );
@@ -85,6 +86,28 @@ class MainPage extends Component {
                         </Animated >
                     );
                 }
+            }
+            case 'gallery-type': {
+                return (
+                    <Animated animationIn="slideInDown" animationOut="slideInDown" animationInDelay={1} isVisible={true} style={{ width: '50%' }}>
+                        <div className={classes.popupBox}>
+                            <div className={classes.descHeading}>
+                                <h2 className={classes.descHeadingText}>{content.date}</h2>
+                            </div>
+                            <div className={classes.galleryDescBody}>
+                                <div className={classes.imageHolder}>
+                                    <Slider arrows={true} infinite slidesToShow={1} slidesToScroll={1} speed={200}>
+                                        {content.imageArray.map(ex =>
+                                            <div className={classes.individualImageWrapper}>
+                                                <img src={ex} alt="unloaded" className={classes.imageThumb} />
+                                            </div>)}
+                                    </Slider>
+                                </div>
+                                <button className={classes.galleryCancel} onClick={() => this.setState({ popupFlag: false })}>Close</button>
+                            </div>
+                        </div>
+                    </Animated>
+                );
             }
             default: return;
         }
@@ -109,7 +132,7 @@ class MainPage extends Component {
                 </header>
                 <main>
                     <Route path={this.props.match.url + '/contactus'} exact component={ContactUs} />
-                    <Route path={this.props.match.url + '/gallery'} exact component={Gallery} />
+                    <Route path={this.props.match.url + '/gallery'} exact render={(props) => <Gallery {...props} clickHandler={this.popupClickHandler} />} />
                     <Route path={this.props.match.url + '/register'} exact component={Register} />
                     <Route path={this.props.match.url + '/blogs'} exact component={Blogs} />
                     <Route path={this.props.match.url + '/reviews'} exact component={Available} />
