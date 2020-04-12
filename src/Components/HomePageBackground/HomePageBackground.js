@@ -43,7 +43,7 @@ class LoginBox extends Component {
             { title: 'Email', id: 1 },
             { title: 'Password', id: 2 },
         ];
-        const { changeStateHandler } = this.props;
+        const { changeStateHandler, onClick } = this.props;
         const loginDetails = loginConfig && loginConfig.map(x => <LoginItems item={x} valueChangeHandler={(e, id) => this.valueChangeHandler(e, id)} />);
         return (<div className={classes.loginBox}>
             <div className={classes.loginWrapper}>
@@ -52,8 +52,9 @@ class LoginBox extends Component {
             </div>
             <div className={classes.loginDetailsWrapper}>
                 {loginDetails}
-                <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                <div style={{ display: 'flex', width: '85%', justifyContent: 'space-between' }}>
                     <button onClick={() => this.submitDataHandler()} className={classes.btn}>Sign In</button>
+                    <button onClick={onClick} className={classes.btn}>Cancel</button>
                 </div>
                 <div style={{ display: 'flex', width: '100%', display: 'flex', flexDirection: 'row', marginTop: '40px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -109,7 +110,7 @@ class SignUpBox extends Component {
             { title: 'Email Address:', id: 3 },
             { title: 'Password: ', id: 4 },
         ];
-        const { changeStateHandler } = this.props;
+        const { changeStateHandler, onClick } = this.props;
         const loginDetails = loginConfig && loginConfig.map(x => <LoginItems item={x} valueChangeHandler={(e, id) => this.valueChangeHandler(e, id)} />)
         return (
             <div className={classes.signupBox}>
@@ -118,8 +119,9 @@ class SignUpBox extends Component {
                 </div>
                 <div className={classes.signupDetailsWrapper}>
                     {loginDetails}
-                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                    <div style={{ display: 'flex', width: '85%', justifyContent: 'space-between' }}>
                         <button onClick={() => this.submitDataHandler()} className={classes.btn}>Sign In</button>
+                        <button onClick={onClick} className={classes.btn}>Cancel</button>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <p style={{ fontSize: '18px', color: '#FFFFFF' }}>Already a member?</p>
@@ -152,7 +154,7 @@ class ForgotPassword extends Component {
     }
 
     render() {
-        const { changeStateHandler } = this.props;
+        const { changeStateHandler, onClick } = this.props;
         const { errorMessage } = this.state;
         return (
             <div className={classes.forgotBox}>
@@ -164,7 +166,10 @@ class ForgotPassword extends Component {
                         <input className={classes.inputBox} onChange={e => this.valueSetter(e)} />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', width: '100%', flexDirection: 'column', alignItems: 'center' }}>
-                        <button onClick={() => this.validatePhoneNumber()} className={classes.btn}>Get OTP</button>
+                        <div style={{ display: 'flex', width: '85%', justifyContent: 'space-between' }}>
+                            <button onClick={() => this.validatePhoneNumber()} className={classes.btn}>Get OTP</button>
+                            <button onClick={onClick} className={classes.btn}>Cancel</button>
+                        </div>
                         {errorMessage ? <p style={{ color: '#FF7F7F' }}>Please Enter a valid phone number.</p> : null}
                         <button onClick={() => changeStateHandler('login')} className={classes.loginButton} style={{ marginTop: '30px' }}>Click here to Login.</button>
                     </div>
@@ -194,7 +199,7 @@ class OtpBox extends Component {
         this.setState({ otpValue: e.target.value });
     }
     render() {
-        const { changeStateHandler } = this.props;
+        const { changeStateHandler, onClick } = this.props;
         const { errorMessage } = this.state;
         return (
             <div className={classes.forgotBox}>
@@ -206,7 +211,10 @@ class OtpBox extends Component {
                         <input className={classes.inputBox} onChange={e => this.valueSetter(e)} />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', width: '100%', flexDirection: 'column', alignItems: 'center' }}>
-                        <button onClick={() => this.validateOtp()} className={classes.btn}>Continue</button>
+                        <div style={{ display: 'flex', width: '85%', justifyContent: 'space-between' }}>
+                            <button onClick={() => this.validateOtp()} className={classes.btn}>Continue</button>
+                            <button onClick={onClick} className={classes.btn}>Cancel</button>
+                        </div>
                         {errorMessage ? <p style={{ color: '#FF7F7F' }}>The OTP entered was invalid.</p> : null}
                         <button onClick={() => changeStateHandler('login')} className={classes.loginButton} style={{ marginTop: '30px' }}>Click here to Login.</button>
                     </div>
@@ -241,7 +249,7 @@ class PasswordReset extends Component {
         }
     }
     render() {
-        const { changeStateHandler } = this.props;
+        const { changeStateHandler, onClick } = this.props;
         const { errorMessage, setFlag } = this.state;
         if (!setFlag) {
             return (
@@ -255,7 +263,10 @@ class PasswordReset extends Component {
                             <input type="password" className={classes.inputBox} onChange={e => this.valueSetter(e, 'confirmPassword')} placeholder="Confrim Password" />
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', width: '100%', flexDirection: 'column', alignItems: 'center' }}>
-                            <button onClick={() => this.validateOtp()} className={classes.btn}>Continue</button>
+                            <div style={{ display: 'flex', width: '85%', justifyContent: 'space-between' }}>
+                                <button onClick={() => this.validateOtp()} className={classes.btn}>Confirm</button>
+                                <button onClick={onClick} className={classes.btn}>Cancel</button>
+                            </div>
                             {errorMessage ? <p style={{ color: '#FF7F7F' }}>The passwords do not match!</p> : null}
                         </div>
                     </div>
@@ -318,21 +329,22 @@ class HomePageBackground extends Component {
     }
 
     getDisplayItem = type => {
+        const { onClick } = this.props;
         switch (type) {
             case 'login': {
-                return <LoginBox changeStateHandler={type => this.changeStateHandler(type)} />
+                return <LoginBox changeStateHandler={type => this.changeStateHandler(type)} onClick={onClick} />
             }
             case 'signup': {
-                return <SignUpBox changeStateHandler={type => this.changeStateHandler(type)} />
+                return <SignUpBox changeStateHandler={type => this.changeStateHandler(type)} onClick={onClick} />
             }
             case 'forgot': {
-                return <ForgotPassword changeStateHandler={type => this.changeStateHandler(type)} />
+                return <ForgotPassword changeStateHandler={type => this.changeStateHandler(type)} onClick={onClick} />
             }
             case 'otp': {
-                return <OtpBox changeStateHandler={type => this.changeStateHandler(type)} />
+                return <OtpBox changeStateHandler={type => this.changeStateHandler(type)} onClick={onClick} />
             }
             case 'passwordReset': {
-                return <PasswordReset changeStateHandler={type => this.changeStateHandler(type)} />
+                return <PasswordReset changeStateHandler={type => this.changeStateHandler(type)} onClick={onClick} />
             }
             default: break;
         }
@@ -343,17 +355,17 @@ class HomePageBackground extends Component {
         const { history } = this.props;
         const displayItem = this.getDisplayItem(displayType);
         return (
-            <div style={{ height: window.innerHeight }}>
-                <div style={{ position: 'fixed', zIndex: '1', width: '100%', height: '100%', opacity: '0.7' }}>
-                    <img className={classes.Background} src="https://makeholidaysgreener.com/images/media/iStock-139992597_reethi_beach_crop.jpg" alt="image.jpg" />
-                </div>
-                <div className={classes.container}>
-                    <Header history={history} />
-                    <div className={classes.loginBoxContainer}>
-                        {displayItem}
-                    </div>
-                </div>
-            </div>
+            // <div style={{ height: window.innerHeight }}>
+            //     <div style={{ position: 'fixed', zIndex: '1', width: '100%', height: '100%', opacity: '0.7' }}>
+            //         <img className={classes.Background} src="https://makeholidaysgreener.com/images/media/iStock-139992597_reethi_beach_crop.jpg" alt="image.jpg" />
+            //     </div>
+            //     <div className={classes.container}>
+            //         <Header history={history} />
+            // <div className={classes.loginBoxContainer}>
+            displayItem
+            // </div>
+            //     </div>
+            // </div>
         )
     }
 

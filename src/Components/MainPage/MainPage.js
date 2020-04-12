@@ -7,9 +7,13 @@ import Register from '../Register/Register';
 import Available from '../Available/Available';
 import About from '../About/About';
 import Blogs from '../Blogs/Blogs';
+import Camping from '../../assets/images/camping-tent.png';
 import hamburger from '../../assets/images/line-menu.png';
 import login from '../../assets/images/man-user.png';
 import LogoImage from '../../assets/images/travelBanjara.png';
+import HomePageBackground from '../HomePageBackground/HomePageBackground';
+import PackageTab from '../PackageTab';
+import { Animated } from "react-animated-css";
 
 class MainPage extends Component {
 
@@ -22,28 +26,78 @@ class MainPage extends Component {
         { name: 'Reviews', page: 'reviews', path: '/reviews' },
     ];
 
-    componentDidMount() {
-        const { match, location, history } = this.props;
-        history.push('/MainPage');
+    state = {
+        popupFlag: undefined,
+        popup: undefined,
+        content: null,
+    };
+
+    // componentDidMount() {
+    //     const { match, location, history } = this.props;
+    //     history.push('/MainPage');
+    // }
+
+    popupClickHandler = (type, popupType) => {
+        const popup = {};
+        popup.type = popupType;
+        this.setState({ popupFlag: true, popup, content: type });
+    }
+
+    renderPopupContent = () => {
+        const { popup, content } = this.state;
+        const loggedIn = true;
+        switch (popup.type) {
+            case 'example': {
+                return (<div class={classes.popupBox}>Sumit</div>)
+            }
+            case 'description': {
+                return (
+                    <Animated animationIn="slideInDown" animationOut="slideInDown" animationInDelay={1} isVisible={true} style={{ width: '50%' }}>
+                        <div className={classes.popupBox}>
+                            <div className={classes.descHeading}>
+                                <h2 className={classes.descHeadingText}>{content.heading}</h2>
+                            </div>
+                            <div className={classes.descBody}>
+                                <img src={content.icon} alt="unloaded" className={classes.descBodyBackgroundImage} />
+                                <div className={classes.bodyText}>
+                                    <p>{content.description}</p>
+                                    <div className={classes.buttonContainer}>
+                                        <button className={classes.cancel} onClick={() => this.setState({ popupFlag: false })}>{content.buttons[0]}</button>
+                                        <button className={classes.register}>{content.buttons[1]}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Animated>
+                );
+            }
+            case 'tab-type': {
+                if (loggedIn) {
+                    return (
+                        <Animated animationIn="slideInDown" animationOut="slideInDown" animationInDelay={1} isVisible={true} style={{ width: '50%'}}>
+                            <PackageTab content={content} onClick={() => this.setState({ popupFlag: false })} />
+                        </Animated>
+                    );
+                } else {
+                    return (
+                        <Animated animationIn="slideInDown" animationOut="slideInDown" animationInDelay={1} isVisible={true}>
+                            <HomePageBackground onClick={() => this.setState({ popupFlag: false })} />
+                        </Animated >
+                    );
+                }
+            }
+            default: return;
+        }
     }
     render() {
+        const { popupFlag } = this.state;
         const navItem = this.navItems.map(x => <NavLink className={classes.navItems} to={this.props.match.url + x.path}>{x.name}</NavLink>);
         return (
             <div classeName={classes.wrapper}>
+                {popupFlag ? <div className={classes.popupWrapper}>
+                    {this.renderPopupContent()}
+                </div> : null}
                 <header style={{ zIndex: 5 }}>
-                    {/* <div className={classes.logo}><h1>The Travel Banjara</h1></div>
-                        <hr></hr>
-                        <label for="show-menu" className={classes.showMenu}><img style={{width: '30px', float: 'left', marginLeft: '10px'}} src={hamburger} alt="hamburger"/></label>
-                           <input type="checkbox" id="show-menu" role="button" />
-                                <ul className={classes.menu}>
-                                <li><NavLink to={this.props.match.url + '/aboutus'}>About Us</NavLink></li>
-                                <li><NavLink to={this.props.match.url + '/gallery'}>Gallery</NavLink></li>
-                                <li><NavLink to={this.props.match.url + '/reviews'}>Reviews</NavLink></li>
-                                <li><NavLink to={this.props.match.url + '/register'}>Register</NavLink></li>
-                                <li><NavLink to={this.props.match.url + '/blogs'}>Blogs</NavLink></li>
-                                <li><NavLink to={this.props.match.url + '/contactus'}>Contacts</NavLink></li>
-                                <li><NavLink to={'/'}><span><img style={{width: '11px', marginRight: '5px'}} src={login} alt="unloaded" /></span>Login</NavLink></li>
-                            </ul> */}
                     <div className={classes.logo}>
                         <div style={{ width: '10%' }}>
                             <img className={classes.Background} src={LogoImage} alt="image.jpg" style={{ width: '400px', height: '150px' }} />
@@ -59,7 +113,7 @@ class MainPage extends Component {
                     <Route path={this.props.match.url + '/register'} exact component={Register} />
                     <Route path={this.props.match.url + '/blogs'} exact component={Blogs} />
                     <Route path={this.props.match.url + '/reviews'} exact component={Available} />
-                    <Route path={this.props.match.url + '/aboutus'} exact component={About} />
+                    <Route path={this.props.match.url + '/aboutus'} exact render={(props) => <About {...props} clickHandler={this.popupClickHandler} />} />
                 </main>
             </div>
         )

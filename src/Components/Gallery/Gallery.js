@@ -43,7 +43,7 @@ class Gallery extends Component{
         return(
             <div className={classes.mainDiv}>
                 <div className={classes.galleryHeading}>
-                    <h2 className="animated fadeInLeftBig"> Banjara's Gallery </h2>
+                    <h2 className={["animated fadeInLeftBig"]}> Banjara's Gallery </h2>
                 </div>
                 <div className={classes.galleryMain}>
                     <img className={classes.imageThumb} src={image1} alt="unloadeimage.jpg"/>

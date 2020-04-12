@@ -16,6 +16,8 @@ import Pic2 from '../../assets/gallery/Day1pic4.jpg';
 import Pic3 from '../../assets/gallery/Day2pic1.JPG';
 import Pic4 from '../../assets/gallery/Day3pic1.JPG';
 import Pic5 from '../../assets/gallery/Day4pic4.jpeg';
+import contens from './content';
+import experience from './experience';
 
 const IndividualItem = (props) => {
     const { item } = props;
@@ -27,9 +29,9 @@ const IndividualItem = (props) => {
 }
 
 const IconImage = (props) => {
-    const { item } = props;
+    const { item, onClick } = props;
     return (
-        <div className={classes.iconImageWrapper}>
+        <div className={classes.iconImageWrapper} onClick={onClick}>
             <img className={classes.campingImage} src={item.icon} alt="unloaded image" />
             <p className={classes.iconLabel}>{item.text}</p>
         </div>
@@ -39,12 +41,42 @@ const IconImage = (props) => {
 const BlogImageCell = (props) => {
     const { item, type } = props;
     return (
-        <div className={classes.blogSlider1}>
+        <div className={classes.blogSlider}>
             <img className={classes.blogSlider} src={item.image} alt="unloaded image" />
             <div className={classes.viewBlogWrapper}>
-    <p className={classes.blogSliderText}>{type === 'gallery' ? 'View Image' : 'View Blog'}</p>
+                <p className={classes.blogSliderText}>{type === 'gallery' ? 'View Image' : 'View Blog'}</p>
             </div>
+        </div>
+    );
+}
 
+const PackageImageCell = (props) => {
+    const { item, onClick } = props;
+    return (
+        <div onClick={onClick}>
+            <img className={classes.packageSlider} src={item.image} alt="unloaded image" />
+            <div className={classes.viewPackageWrapper}>
+                <p className={classes.packageSliderText}>{item.location}, {item.text}</p>
+            </div>
+        </div>
+    );
+}
+
+const ExperiencesSectionCell = (props) => {
+    const { item, onClick } = props;
+    return (
+        <div onClick={onClick}>
+            <div className={classes.experienceWrapper} style={{ backgroundColor: item.color }}>
+                <div className={classes.profileImageWrapper}>
+                    <img className={classes.profileImage} src={item.image} alt="unloaded image" />
+                </div>
+                <div className={classes.userWrapper}>
+                    <p>{item.user}</p>
+                </div>
+                <div className={classes.reviewWrapper}>
+                    <p>{item.review}</p>
+                </div>
+            </div>
         </div>
     );
 }
@@ -55,11 +87,11 @@ class Blogs extends React.Component {
         { url: 'https://www.uniteddigitallearning.com/wp-content/uploads/2018/06/camping-l.jpg', id: 3 },
     ];
     IconConfig = [
-        { icon: Camping, id: 1, text: 'Camping' },
-        { icon: Bonfire, id: 1, text: 'Bonfire' },
-        { icon: Barbecue, id: 1, text: 'Barbecue' },
-        { icon: Dinner, id: 1, text: 'Dinner' },
-        { icon: Fun, id: 1, text: 'Fun' },
+        { icon: Camping, id: 1, text: 'Camping', type: contens.camping },
+        { icon: Bonfire, id: 1, text: 'Bonfire', type: contens.bonfire },
+        { icon: Barbecue, id: 1, text: 'Barbecue', type: contens.barbecue },
+        { icon: Dinner, id: 1, text: 'Dinner', type: contens.dinner },
+        { icon: Fun, id: 1, text: 'Fun', type: contens.fun },
     ];
     BlogImageConfig = [
         { image: 'https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', id: 1 },
@@ -67,21 +99,31 @@ class Blogs extends React.Component {
         { image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80', id: 1 },
         { image: 'https://s3.ap-south-1.amazonaws.com/campmonk.com/seo/5852dff0-9fd7-11e8-b9fc-191a4526f1bf.jpeg', id: 1 },
     ];
-    GalleryImageConfig = [
-        { image: Pic1, id: 1},
-        { image: Pic2, id: 2},
-        { image: Pic3, id: 3},
-        { image: Pic4, id: 4},
-        { image: Pic5, id: 5},
+    PackageImageConfig = [
+        { image: 'https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', id: 1, text: 'INR 499', location: 'Chilka' },
+        { image: 'https://koa.com/blog/images/solo-camping-tips.jpg?preset=blogPhoto', id: 1, text: 'INR 699', location: 'Chandrabhaga' },
+        { image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80', id: 1, text: 'INR 999', location: 'Puri' },
     ];
+    GalleryImageConfig = [
+        { image: Pic1, id: 1 },
+        { image: Pic2, id: 2 },
+        { image: Pic3, id: 3 },
+        { image: Pic4, id: 4 },
+        { image: Pic5, id: 5 },
+    ];
+
+    componentWillMount = () => {
+        console.info('props', this.props);
+    }
     render() {
+        const { clickHandler } = this.props;
         return (
             <div className={classes.mainDiv}>
                 <Slider arrows adaptiveHeight={true} autoplay={true} slidesToShow={1} slidesToScroll={1} dots={false} fade pauseOnHover speed={2000}>
                     {this.FirstSliderConfig.map(im => <IndividualItem item={im} />)}
                 </Slider>
                 <div className={classes.iconWrapper}>
-                    {this.IconConfig.map(ic => <IconImage item={ic} />)}
+                    {this.IconConfig.map(ic => <IconImage item={ic} onClick={() => clickHandler(ic.type, 'description')} />)}
                 </div>
                 <div className={classes.whyUs}>
                     <h1 style={{ width: '100%', textAlign: 'center', marginBottom: '50px' }}>Why Camp with Us</h1>
@@ -104,7 +146,19 @@ class Blogs extends React.Component {
                 <div className={classes.gallerySection}>
                     <h1 style={{ width: '100%', textAlign: 'center', marginBottom: '50px' }}>Gallery</h1>
                     <Slider infinite centerMode adaptiveHeight={true} autoplay={true} slidesToShow={3} slidesToScroll={1} speed={200} color="transparent">
-                        {this.GalleryImageConfig.map(bm => <BlogImageCell item={bm} type="gallery"/>)}
+                        {this.GalleryImageConfig.map(bm => <BlogImageCell item={bm} type="gallery" />)}
+                    </Slider>
+                </div>
+                <div className={classes.packageSection}>
+                    <h1 style={{ width: '100%', textAlign: 'center', marginBottom: '50px' }}>View Our Packages</h1>
+                    <Slider infinite centerMode adaptiveHeight={true} autoplay={true} slidesToShow={2} slidesToScroll={1} speed={200} color="transparent">
+                        {this.PackageImageConfig.map(bm => <PackageImageCell item={bm} onClick={() => clickHandler(bm, 'tab-type')} />)}
+                    </Slider>
+                </div>
+                <div className={classes.experiencesSection}>
+                    <h1 style={{ width: '100%', textAlign: 'center', marginBottom: '50px' }}>Experiences</h1>
+                    <Slider infinite centerMode adaptiveHeight={true} autoplay={true} slidesToShow={1} slidesToScroll={1} speed={200} color="transparent">
+                        {experience.map(ex => <ExperiencesSectionCell item={ex} />)}
                     </Slider>
                 </div>
                 <div className={classes.footerHeight}><Footer /></div>

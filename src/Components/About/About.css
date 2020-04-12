@@ -50,7 +50,7 @@
 
 .footerHeight{
     position: relative;
-    top: 1810px;
+    top: 80px;
 }
 .campingIntro{
     margin: auto;
@@ -126,6 +126,65 @@
     padding-bottom: 80px;
 }
 
+.packageSection{
+    font-family: 'Montserrat', sans-serif;
+    flex-direction: column;
+    margin-top: 60px;
+    display: flex;
+    width: 100%;
+    background-color: #8A33FF30;
+}
+
+.experiencesSection{
+    font-family: 'Montserrat', sans-serif;
+    flex-direction: column;
+    margin-top: 60px;
+    display: flex;
+    width: 100%;
+}
+
+.experienceWrapper{
+    padding-top: 20px;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.profileImageWrapper{
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileImage{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80px;
+  height: 80px;
+  margin-top: 15px;
+}
+
+.reviewWrapper{
+    font-family: 'Montserrat', sans-serif;
+    width: 70%;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+.userWrapper{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: bold;
+}
+
 .whyUsBody{
     display: flex;
     justify-content: space-around;
@@ -146,8 +205,17 @@
 .blogSlider{
     width: 100%;
     height: 400px;
-    opacity: 0.7;
+    opacity: 0.8;
     position: relative;
+    z-index: 5;
+}
+
+.packageSlider{
+    width: 100%;
+    height: 400px;
+    opacity: 0.8;
+    position: relative;
+    z-index: 5;
 }
 
 .blogSliderText{
@@ -163,8 +231,6 @@
 }
 
 .blogSliderText:hover{
-    font-size: 25px;
-    color: #003366;
     cursor: pointer;
 }
 
@@ -178,6 +244,25 @@
 
 .viewBlogWrapper{
     display: flex;
+}
+
+.viewPackageWrapper{
+    display: flex;
+    width: 50%;
+    float: right;
+}
+
+.packageSliderText{
+    font-weight: bold;
+    font-size: 30px;
+    width: 90%;
+    text-align: right;
+}
+
+.detailsText{
+    padding-top: 22px;
+    width: 100%;
+    font-size: 18px;
 }
 
 .nextLogo{
