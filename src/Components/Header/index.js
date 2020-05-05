@@ -14,7 +14,7 @@ class Header extends Component {
     navigationHandler = item => {
         const { history } = this.props;
         history.push({
-            pathname: '/Mainpage',
+            pathname: '/MainPage/aboutus',
             state: { link: item.page },
         });
     }

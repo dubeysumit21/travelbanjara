@@ -7,14 +7,12 @@ import Register from '../Register/Register';
 import Available from '../Available/Available';
 import About from '../About/About';
 import Blogs from '../Blogs/Blogs';
-import Camping from '../../assets/images/camping-tent.png';
-import hamburger from '../../assets/images/line-menu.png';
-import login from '../../assets/images/man-user.png';
 import LogoImage from '../../assets/images/travelBanjara.png';
 import HomePageBackground from '../HomePageBackground/HomePageBackground';
 import PackageTab from '../PackageTab';
 import { Animated } from "react-animated-css";
 import Slider from 'react-slick';
+import MainPageEnum from './MainPageEnum';
 
 class MainPage extends Component {
 
@@ -44,6 +42,31 @@ class MainPage extends Component {
         this.setState({ popupFlag: true, popup, content: type });
     }
 
+    routeHandler = page => {
+        console.info('page', page);
+        const { history, match } = this.props;
+        const { url } = match;
+        let routePage;
+        switch(page) {
+            case MainPageEnum.REGISTER: {
+                routePage = "/register";
+                break;
+            }
+            case MainPageEnum.BLOGS: {
+                routePage = "/blogs";
+                break;
+            }
+            case MainPageEnum.GALLERY: {
+                routePage = "/gallery";
+                break;
+            }
+            default: return;
+        }
+        this.setState({ popupFlag: false }, () => {
+            history.push(url + routePage);
+        })
+    }
+
     renderPopupContent = () => {
         const { popup, content } = this.state;
         const loggedIn = true;
@@ -64,7 +87,7 @@ class MainPage extends Component {
                                     <p>{content.description}</p>
                                     <div className={classes.buttonContainer}>
                                         <button className={classes.cancel} onClick={() => this.setState({ popupFlag: false })}>{content.buttons[0]}</button>
-                                        <button className={classes.register}>{content.buttons[1]}</button>
+                                        <button className={classes.register} onClick={() => this.routeHandler(MainPageEnum.REGISTER)}>{content.buttons[1]}</button>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +159,7 @@ class MainPage extends Component {
                     <Route path={this.props.match.url + '/register'} exact component={Register} />
                     <Route path={this.props.match.url + '/blogs'} exact component={Blogs} />
                     <Route path={this.props.match.url + '/reviews'} exact component={Available} />
-                    <Route path={this.props.match.url + '/aboutus'} exact render={(props) => <About {...props} clickHandler={this.popupClickHandler} />} />
+                    <Route path={this.props.match.url + '/aboutus'} exact render={(props) => <About {...props} onPress={type => this.routeHandler(type)} clickHandler={this.popupClickHandler} />} />
                 </main>
             </div>
         )

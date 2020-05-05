@@ -355,17 +355,17 @@ class HomePageBackground extends Component {
         const { history } = this.props;
         const displayItem = this.getDisplayItem(displayType);
         return (
-            // <div style={{ height: window.innerHeight }}>
-            //     <div style={{ position: 'fixed', zIndex: '1', width: '100%', height: '100%', opacity: '0.7' }}>
-            //         <img className={classes.Background} src="https://makeholidaysgreener.com/images/media/iStock-139992597_reethi_beach_crop.jpg" alt="image.jpg" />
-            //     </div>
-            //     <div className={classes.container}>
-            //         <Header history={history} />
-            // <div className={classes.loginBoxContainer}>
-            displayItem
-            // </div>
-            //     </div>
-            // </div>
+            <div style={{ height: window.innerHeight }}>
+                <div style={{ position: 'fixed', zIndex: '1', width: '100%', height: '100%', opacity: '0.7' }}>
+                    <img className={classes.Background} src="https://makeholidaysgreener.com/images/media/iStock-139992597_reethi_beach_crop.jpg" alt="image.jpg" />
+                </div>
+                <div className={classes.container}>
+                    <Header history={history} />
+                    <div className={classes.loginBoxContainer}>
+                        {displayItem}
+                    </div>
+                </div>
+            </div>
         )
     }
 

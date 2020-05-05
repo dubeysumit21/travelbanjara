@@ -174,7 +174,6 @@ img{
 .formStyle input[type="button"]:hover
 {
 	cursor: pointer;
-	background-color: #19c589
 }
 .red{
 	border: 2px solid red;

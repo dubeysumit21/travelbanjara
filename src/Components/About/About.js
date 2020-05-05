@@ -39,12 +39,13 @@ const IconImage = (props) => {
 }
 
 const BlogImageCell = (props) => {
-    const { item, type } = props;
+    const { item, type, onPress } = props;
+    const routePage = type === 'gallery' ? "gallery" : "blogs";
     return (
         <div className={classes.blogSlider}>
             <img className={classes.blogSlider} src={item.image} alt="unloaded image" />
             <div className={classes.viewBlogWrapper}>
-                <p className={classes.blogSliderText}>{type === 'gallery' ? 'View Image' : 'View Blog'}</p>
+                <p onClick={() => onPress(routePage)} className={classes.blogSliderText}>{type === 'gallery' ? 'View Image' : 'View Blog'}</p>
             </div>
         </div>
     );
@@ -116,7 +117,7 @@ class Blogs extends React.Component {
         console.info('props', this.props);
     }
     render() {
-        const { clickHandler } = this.props;
+        const { clickHandler, onPress } = this.props;
         return (
             <div className={classes.mainDiv}>
                 <Slider arrows adaptiveHeight={true} autoplay={true} slidesToShow={1} slidesToScroll={1} dots={false} fade pauseOnHover speed={2000}>
@@ -140,13 +141,13 @@ class Blogs extends React.Component {
                 <div className={classes.blogSection}>
                     <h1 style={{ width: '100%', textAlign: 'center', marginBottom: '50px' }}>Our Blogs</h1>
                     <Slider infinite centerMode adaptiveHeight={true} autoplay={true} slidesToShow={3} slidesToScroll={1} speed={200} color="transparent">
-                        {this.BlogImageConfig.map(bm => <BlogImageCell item={bm} />)}
+                        {this.BlogImageConfig.map(bm => <BlogImageCell onPress={type => onPress(type)}item={bm} />)}
                     </Slider>
                 </div>
                 <div className={classes.gallerySection}>
                     <h1 style={{ width: '100%', textAlign: 'center', marginBottom: '50px' }}>Gallery</h1>
                     <Slider infinite centerMode adaptiveHeight={true} autoplay={true} slidesToShow={3} slidesToScroll={1} speed={200} color="transparent">
-                        {this.GalleryImageConfig.map(bm => <BlogImageCell item={bm} type="gallery" />)}
+                        {this.GalleryImageConfig.map(bm => <BlogImageCell onPress={type => onPress(type)} item={bm} type="gallery" />)}
                     </Slider>
                 </div>
                 <div className={classes.packageSection}>
